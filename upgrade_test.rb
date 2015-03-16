@@ -4,7 +4,7 @@ require_relative 'main'
 class UpgradeTest < MiniTest::Unit::TestCase
 
   LIST = Dir.entries("scripts")
-  VERSION = 47
+  VERSION = 46 
 
   def test_get_list
     detector = Upgrade.new(LIST, VERSION)
@@ -28,12 +28,12 @@ class UpgradeTest < MiniTest::Unit::TestCase
 
   def test_upgrade_db
     detector = Upgrade.new(LIST, VERSION)
-    assert_equal [45, 46, 47, 51, 55], detector.upgrade_db(45)
+    assert_equal [46, 47, 51, 55], detector.upgrade_db(VERSION)
   end
 
   def test_change_db_version
     detector = Upgrade.new(LIST, VERSION)
-    assert_equal 47, detector.change_db_version(VERSION)
+    assert_equal VERSION, detector.change_db_version(VERSION)
   end
-  
+
 end
