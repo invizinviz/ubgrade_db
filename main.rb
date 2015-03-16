@@ -32,17 +32,19 @@ class Upgrade
     digit_arr = get_digit_array_from_files
     count = 0
     arr = []
-    digit_arr.each do |item|
-      if version <= item 
-        (count..digit_arr.count).each do
-          arr << digit_arr[count] if digit_arr[count] != nil
-          run_file(arr.last)
+    if version == digit_arr.last
+      arr << "This is current version"
+    else
+      digit_arr.each do |item|
+        if version <= item 
+          (count..digit_arr.count).each do
+            arr << digit_arr[count] if digit_arr[count] != nil
+            run_file(arr.last)
+            count += 1
+          end
+        else
           count += 1
         end
-      elsif version == item
-        puts "This is current version"
-      else
-        count += 1
       end
     end
     change_db_version(arr.last)
@@ -63,5 +65,5 @@ class Upgrade
     end
     exec_command
   end
-  
+
 end

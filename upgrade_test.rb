@@ -20,9 +20,14 @@ class UpgradeTest < MiniTest::Unit::TestCase
     assert_equal [45, 46, 47, 51, 55], detector.get_digit_array_from_files
   end
 
+  def test_do_not_upgrade_db_if_current_version
+    detector = Upgrade.new(LIST)
+    assert_equal ["This is current version"], detector.upgrade_db(55)
+  end
+
   def test_upgrade_db
     detector = Upgrade.new(LIST)
-    assert_equal [47, 51, 55], detector.upgrade_db(47)
+    assert_equal [46, 47, 51, 55], detector.upgrade_db(46)
   end
 
   def test_change_db_version

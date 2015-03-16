@@ -1,1 +1,1 @@
-echo 047.createtable.sql
+echo "it's 047.createtable.sql"
