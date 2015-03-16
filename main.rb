@@ -3,6 +3,7 @@ class Upgrade
 
   def initialize(list)
     self.list = list
+    @version = 0
   end
 
   def get_list
@@ -33,13 +34,34 @@ class Upgrade
     arr = []
     digit_arr.each do |item|
       if version <= item 
-        arr << item
+        (count..digit_arr.count).each do
+          arr << digit_arr[count] if digit_arr[count] != nil
+          run_file(arr.last)
+          count += 1
+        end
+      elsif version == item
+        puts "This is current version"
       else
         count += 1
       end
     end
+    change_db_version(arr.last)
     arr
   end
 
+  def change_db_version(new_version)
+    @version = new_version
+  end
 
+  def run_file(file_number)
+    files = get_list_of_script_files
+    exec_command = ''
+    files.each do |file|
+      if file.scan(/\d/).join('').to_i == file_number
+        system("scripts/#{file}")
+      end
+    end
+    exec_command
+  end
+  
 end

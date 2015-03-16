@@ -1,0 +1,1 @@
+echo 046.createtable.sql

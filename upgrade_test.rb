@@ -25,4 +25,14 @@ class UpgradeTest < MiniTest::Unit::TestCase
     assert_equal [47, 51, 55], detector.upgrade_db(47)
   end
 
+  def test_change_db_version
+    detector = Upgrade.new(LIST)
+    assert_equal 47, detector.change_db_version(47)
+  end
+
+  # def test_run_file
+  #   detector = Upgrade.new(LIST)
+  #   assert_equal "051.createtable.sql", detector.run_file(51)
+  # end
+
 end

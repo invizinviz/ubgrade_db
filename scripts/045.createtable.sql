@@ -1,1 +1,1 @@
-045.createtable.sql
+echo 045.createtable.sql

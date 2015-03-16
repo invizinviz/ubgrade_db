@@ -1,0 +1,1 @@
+echo "it's 051.createtable.sql"
