@@ -1,9 +1,9 @@
 class Upgrade
-  attr_accessor :list
+  attr_accessor :list, :version
 
-  def initialize(list)
+  def initialize(list, version)
     self.list = list
-    @version = 0
+    @version = version
   end
 
   def get_list
@@ -57,13 +57,11 @@ class Upgrade
 
   def run_file(file_number)
     files = get_list_of_script_files
-    exec_command = ''
     files.each do |file|
       if file.scan(/\d/).join('').to_i == file_number
         system("scripts/#{file}")
       end
     end
-    exec_command
   end
 
 end
