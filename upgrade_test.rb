@@ -20,4 +20,9 @@ class UpgradeTest < MiniTest::Unit::TestCase
     assert_equal [45, 46, 47, 51, 55], detector.get_digit_array_from_files
   end
 
+  def test_upgrade_db
+    detector = Upgrade.new(LIST)
+    assert_equal [47, 51, 55], detector.upgrade_db(47)
+  end
+
 end

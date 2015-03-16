@@ -27,6 +27,19 @@ class Upgrade
     arr
   end
 
+  def upgrade_db(version)
+    digit_arr = get_digit_array_from_files
+    count = 0
+    arr = []
+    digit_arr.each do |item|
+      if version <= item 
+        arr << item
+      else
+        count += 1
+      end
+    end
+    arr
+  end
 
 
 end
