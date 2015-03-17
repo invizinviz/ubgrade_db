@@ -35,7 +35,7 @@ class Upgrade
     else
       digit_arr.each do |item|
         if version <= item 
-          (count..digit_arr.count).each do
+          (count...digit_arr.count).each do
             arr << digit_arr[count] if digit_arr[count] != nil
             run_file(folder, arr.last)
             count += 1

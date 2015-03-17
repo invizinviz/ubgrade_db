@@ -13,7 +13,7 @@ OptionParser.new do |opts|
 
 end.parse!
 
-if options.empty?
+if options.empty? || options.count == 1
   puts "arguments can't be empty!"
   puts "use ./upgrade.rb -h to get more information"
 else
