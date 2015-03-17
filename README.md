@@ -12,5 +12,7 @@ rspec upgrade_test.rb
 ```
 
 ```bash
+./upgrade.rb -d 46 -f "scripts"
+
 use ./upgrade.rb -h to get more information
 ```
