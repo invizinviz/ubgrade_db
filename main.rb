@@ -11,12 +11,9 @@ class Upgrade
   end
 
   def get_list_of_script_files
-    arr = []
-    @list.each do |item|
-      next if item == '.' or item == '..'
-      arr << item
+    @list.reject do |item|
+      item == '.' || item == '..'
     end
-    arr
   end
 
   def get_digit_array_from_files
@@ -25,7 +22,7 @@ class Upgrade
     files.map do |item|
       arr << item.scan(/\d/).join('').to_i
     end
-    arr
+    arr.sort
   end
 
   def upgrade_db(version)
