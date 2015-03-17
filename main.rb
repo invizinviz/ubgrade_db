@@ -51,6 +51,7 @@ class Upgrade
 
   def change_db_version(new_version)
     @version = new_version
+    puts "new db version is #{@version}"
   end
 
   def run_file(folder, file_number)
