@@ -25,26 +25,27 @@ class Upgrade
     arr.sort
   end
 
-  def upgrade_db(version)
+  def upgrade_db(folder, version)
     digit_arr = get_digit_array_from_files
     count = 0
     arr = []
-    if version == digit_arr.last
-      arr << "This is current version"
+    if version >= digit_arr.last
+      arr << "This is last version"
+      puts "This is last version"
     else
       digit_arr.each do |item|
         if version <= item 
           (count..digit_arr.count).each do
             arr << digit_arr[count] if digit_arr[count] != nil
-            run_file(arr.last)
+            run_file(folder, arr.last)
             count += 1
           end
         else
           count += 1
         end
       end
+      change_db_version(arr.last)
     end
-    change_db_version(arr.last)
     arr
   end
 
@@ -52,11 +53,11 @@ class Upgrade
     @version = new_version
   end
 
-  def run_file(file_number)
+  def run_file(folder, file_number)
     files = get_list_of_script_files
     files.each do |file|
       if file.scan(/\d/).join('').to_i == file_number
-        system("scripts/#{file}")
+        return system("#{folder}/#{file}")
       end
     end
   end
